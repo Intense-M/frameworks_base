@@ -6188,8 +6188,7 @@ public class PackageManagerService extends IPackageManager.Stub {
         if (DEBUG_DEXOPT) {
             Log.i(TAG, "Optimizing app " + curr + " of " + total + ": " + pkg.packageName);
         }
-        if (!isFirstBoot()) {
-            try {
+        try {
                 // give the packagename to the PhoneWindowManager
                 ApplicationInfo ai;
                 try {
@@ -6199,11 +6198,10 @@ public class PackageManagerService extends IPackageManager.Stub {
                 }
                 mPolicy.setPackageName((String) (ai != null ? mContext.getPackageManager().getApplicationLabel(ai) : pkg.packageName));
 
-                ActivityManagerNative.getDefault().showBootMessage(
-                        mContext.getResources().getString(R.string.android_upgrading_apk,
-                                curr, total), true);
-            } catch (RemoteException e) {
-            }
+            ActivityManagerNative.getDefault().showBootMessage(
+                    mContext.getResources().getString(R.string.android_upgrading_apk,
+                            curr, total), true);
+        } catch (RemoteException e) {
         }
         PackageParser.Package p = pkg;
         synchronized (mInstallLock) {
