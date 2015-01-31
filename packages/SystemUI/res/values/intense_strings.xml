@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
-* Copyright (c) 2009, The Android Open Source Project
+* Copyright (c) 2016, The Intense-M Project
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -42,5 +42,8 @@
     <string name="accessibility_quick_settings_ambient_display_changed_off">Ambient Display turned off</string>
     <string name="accessibility_quick_settings_ambient_display_changed_on">Ambient Display turned on</string>
     <string name="quick_settings_ambient_display_label">Ambient Display</string>
+
+    <!-- Screenshot QS tile -->
+    <string name="quick_settings_screenshot_label">Screenshot</string>
 
 </resources>
