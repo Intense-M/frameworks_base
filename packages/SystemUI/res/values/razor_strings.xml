@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2015 Minimal OS
+<!-- Copyright (C) 2016 Team-Razor
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -65,4 +65,8 @@
     <string name="accessibility_quick_settings_sync_changed_off">Sync turned off.</string>
     <!-- Announcement made when sync changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_sync_changed_on">Sync turned on.</string>
+
+    <!-- Screen timeout tile -->
+    <string name="quick_settings_screen_off">Screen off</string>
+
 </resources>
