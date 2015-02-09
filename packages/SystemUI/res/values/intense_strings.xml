@@ -49,4 +49,7 @@
     <!-- NFC QS tile -->
     <string name="quick_settings_nfc_label">NFC</string>
 
+    <!-- Screen off QS tile -->
+    <string name="quick_settings_screen_off">Screen off</string>
+
 </resources>
