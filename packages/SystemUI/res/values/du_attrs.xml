@@ -21,4 +21,8 @@
         <attr name="viewLocation" format="integer" />
     </declare-styleable>
 
+    <!-- SystemUI Tuner Parts -->
+    <string name="systemui_tuner_statusbar_title">Statusbar Items</string>
+    <string name="systemui_tuner_qs_title">Quick Settings</string>
+
 </resources>
