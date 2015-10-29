@@ -3396,6 +3396,7 @@ public final class Settings {
         public static final String TOAST_ICON = "toast_icon";
 
         /**
+<<<<<<< HEAD
          * Whether to use the custom status bar header or not
          * @hide
          */
@@ -3444,6 +3445,12 @@ public final class Settings {
          * @hide
          */
         public static final String STATUSBAR_CLOCK_DATE_POSITION = "statusbar_clock_date_position";
+
+        /**
+         * Disable FC Notifications
+         * @hide
+         */
+        public static final String DISABLE_FC_NOTIFICATIONS = "disable_fc_notifications";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
