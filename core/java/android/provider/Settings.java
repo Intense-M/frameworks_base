@@ -3223,6 +3223,12 @@ public final class Settings {
         public static final Validator LOCK_TO_APP_ENABLED_VALIDATOR = sBooleanValidator;
 
         /**
+         * Whether to display recents in full screen
+         * @hide
+         */
+        public static final String RECENTS_FULL_SCREEN = "recents_full_screen";
+
+        /**
          * I am the lolrus.
          * <p>
          * Nonzero values indicate that the user has a bukkit.
