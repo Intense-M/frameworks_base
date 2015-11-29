@@ -52,4 +52,7 @@
     <!-- Screen off QS tile -->
     <string name="quick_settings_screen_off">Screen off</string>
 
+    <!-- Brightness QS Tile -->
+    <string name="quick_settings_brightness">Brightness</string>
+
 </resources>
