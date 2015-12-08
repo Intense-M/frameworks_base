@@ -48,6 +48,7 @@ import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
@@ -345,6 +346,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private boolean mShowCarrierInPanel = false;
     boolean mExpandedVisible;
 
+    // Intense logo
+    private boolean mIntenseLogo;
+    private int mIntenseLogoColor;
+    private ImageView intenseLogo;
+
     private int mNavigationBarWindowState = WINDOW_STATE_SHOWING;
 
     private int mStatusBarHeaderHeight;
@@ -411,6 +417,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.SCREEN_BRIGHTNESS_MODE), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_INTENSE_LOGO),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_INTENSE_LOGO_COLOR),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -428,6 +440,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mAutomaticBrightness = mode != Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL;
             mBrightnessControl = Settings.System.getInt(
                     resolver, Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0) == 1;
+            mIntenseLogo = Settings.System.getIntForUser(resolver,
+                    Settings.System.STATUS_BAR_INTENSE_LOGO, 0, mCurrentUserId) == 1;
+            mIntenseLogoColor = Settings.System.getIntForUser(resolver,
+                    Settings.System.STATUS_BAR_INTENSE_LOGO_COLOR, 0xFFFFFFFF, mCurrentUserId);
+            showIntenseLogo(mIntenseLogo, mIntenseLogoColor);
         }
     }
 
@@ -3206,6 +3223,16 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             }
         }
     };
+
+    public void showIntenseLogo(boolean show, int color) {
+        if (mStatusBarView == null) return;
+        ContentResolver resolver = mContext.getContentResolver();
+        intenseLogo = (ImageView) mStatusBarView.findViewById(R.id.intense_logo);
+        teslaLogo.setColorFilter(color, Mode.SRC_IN);
+        if (intenseLogo != null) {
+            intenseLogo.setVisibility(show ? (mIntenseLogo ? View.VISIBLE : View.GONE) : View.GONE);
+        }
+    }
 
     private void resetUserExpandedStates() {
         ArrayList<Entry> activeNotifications = mNotificationData.getActiveNotifications();
