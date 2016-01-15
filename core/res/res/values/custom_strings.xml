@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2015 BrokenROM
+<!-- Copyright (C) 2016 Intense-M Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -17,11 +17,8 @@
 
     <!-- Global action Buttons -->
 
-    <!-- Button to reboot the phone, within the Global actions dialog -->
-    <string name="global_action_reboot">Reboot</string>
-
     <!-- Shut down reboot dialogs -->
-
+    
     <!-- Option to reboot the phone, within the Shut down reboot dialog -->
     <string name="shutdown_reboot_option_reboot">Reboot</string>
     <!-- Option to quick reboot the phone, within the Shut down reboot dialog -->
