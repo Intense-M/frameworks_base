@@ -200,6 +200,14 @@ public class QsTuner extends Fragment implements Callback {
         else if (spec.equals("location")) return R.string.quick_settings_location_label;
         else if (spec.equals("cast")) return R.string.quick_settings_cast_title;
         else if (spec.equals("hotspot")) return R.string.quick_settings_hotspot_label;
+        else if (spec.equals("usb_tether")) return R.string.quick_settings_usb_tether_label;
+        else if (spec.equals("ambient_display")) return R.string.quick_settings_ambient_display_label;
+        else if (spec.equals("screenshot")) return R.string.quick_settings_screenshot_label;
+        else if (spec.equals("nfc")) return R.string.quick_settings_nfc_label;
+        else if (spec.equals("screenoff")) return R.string.quick_settings_screen_off;
+        else if (spec.equals("brightness")) return R.string.quick_settings_brightness;
+        else if (spec.equals("music")) return R.string.quick_settings_music_label;
+        else if (spec.equals("reboot")) return R.string.quick_settings_reboot_label;
         return 0;
     }
 
@@ -247,8 +255,9 @@ public class QsTuner extends Fragment implements Callback {
         }
 
         public void reset() {
-            Secure.putStringForUser(getContext().getContentResolver(),
-                    TILES_SETTING, "default", ActivityManager.getCurrentUser());
+            Secure.putStringForUser(getContext().getContentResolver(), TILES_SETTING,
+                    "wifi,bt,dnd,cell,airplane,rotation,flashlight,location,cast",
+                    ActivityManager.getCurrentUser());
         }
 
         private void setTiles(List<String> tiles) {
@@ -443,6 +452,14 @@ public class QsTuner extends Fragment implements Callback {
             else if (mSpec.equals("location")) return R.drawable.ic_signal_location_enable;
             else if (mSpec.equals("cast")) return R.drawable.ic_qs_cast_on;
             else if (mSpec.equals("hotspot")) return R.drawable.ic_hotspot_enable;
+            else if (mSpec.equals("usb_tether")) return R.drawable.ic_qs_usb_tether_off;
+            else if (mSpec.equals("ambient_display")) return R.drawable.ic_qs_ambientdisplay_on;
+            else if (mSpec.equals("screenshot")) return R.drawable.ic_qs_screenshot;
+            else if (mSpec.equals("nfc")) return R.drawable.ic_qs_nfc_on;
+            else if (mSpec.equals("screenoff")) return R.drawable.ic_qs_power;
+            else if (mSpec.equals("brightness")) return R.drawable.ic_qs_brightness_auto_on_alpha;
+            else if (mSpec.equals("music")) return R.drawable.ic_qs_media_play;
+            else if (mSpec.equals("reboot")) return R.drawable.ic_qs_reboot;
             return R.drawable.android;
         }
 

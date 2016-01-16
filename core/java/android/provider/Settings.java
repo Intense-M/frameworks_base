@@ -2871,6 +2871,19 @@ public final class Settings {
         public static final Validator ACCELEROMETER_ROTATION_VALIDATOR = sBooleanValidator;
 
         /**
+         * Control the type of rotation which can be performed using the accelerometer
+         * if ACCELEROMETER_ROTATION is enabled.
+         * Value is a bitwise combination of
+         * 1 = 0 degrees (portrait)
+         * 2 = 90 degrees (left)
+         * 4 = 180 degrees (inverted portrait)
+         * 8 = 270 degrees (right)
+         * Setting to 0 is effectively orientation lock
+         * @hide
+         */
+        public static final String ACCELEROMETER_ROTATION_ANGLES = "accelerometer_rotation_angles";
+
+        /**
          * Default screen rotation when no other policy applies.
          * When {@link #ACCELEROMETER_ROTATION} is zero and no on-screen Activity expresses a
          * preference, this rotation value will be used. Must be one of the
@@ -3249,6 +3262,94 @@ public final class Settings {
          */
         public static final String WIFI_AUTO_CONNECT_TYPE = "wifi_auto_connect_type";
 
+        /**
+         * Whether to show the battery bar
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR = "statusbar_battery_bar";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_COLOR = "statusbar_battery_bar_color";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_THICKNESS = "statusbar_battery_bar_thickness";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_STYLE = "statusbar_battery_bar_style";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_ANIMATE = "statusbar_battery_bar_animate";
+
+        /**
+         * Show or hide clock
+         * 0 - hide
+         * 1 - show (default)
+         * @hide
+         */
+        public static final String STATUS_BAR_CLOCK = "status_bar_clock";
+
+        /**
+         * AM/PM Style for clock options
+         * 0 - Normal AM/PM
+         * 1 - Small AM/PM
+         * 2 - No AM/PM
+         * @hide
+         */
+        public static final String STATUSBAR_CLOCK_AM_PM_STYLE = "statusbar_clock_am_pm_style";
+
+        /**
+         * Style of clock
+         * 0 - Hide Clock
+         * 1 - Right Clock
+         * 2 - Center Clock
+         * @hide
+         */
+        public static final String STATUSBAR_CLOCK_STYLE = "statusbar_clock_style";
+
+        /**
+         * Setting for clock color
+         * @hide
+         */
+        public static final String STATUSBAR_CLOCK_COLOR = "statusbar_clock_color";
+
+        /**
+         * Shows custom date before clock time
+         * 0 - No Date
+         * 1 - Small Date
+         * 2 - Normal Date
+         * @hide
+         */
+        public static final String STATUSBAR_CLOCK_DATE_DISPLAY = "statusbar_clock_date_display";
+
+        /**
+         * Sets the date string style
+         * 0 - Regular style
+         * 1 - Lowercase
+         * 2 - Uppercase
+         * @hide
+         */
+        public static final String STATUSBAR_CLOCK_DATE_STYLE = "statusbar_clock_date_style";
+
+        /**
+         * Stores the java DateFormat string for the date
+         * @hide
+         */
+        public static final String STATUSBAR_CLOCK_DATE_FORMAT = "statusbar_clock_date_format";
+
+        /**
+         * Boolean value whether to link ringtone and notification volume
+         *
+         * @hide
+         */
+        public static final String VOLUME_LINK_NOTIFICATION = "volume_link_notification";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings

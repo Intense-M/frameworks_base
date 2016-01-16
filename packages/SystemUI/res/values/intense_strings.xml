@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
-* Copyright (c) 2009, The Android Open Source Project
+* Copyright (c) 2016, The Intense-M Project
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -24,5 +24,44 @@
 
     <!-- Screenshot Delete Toast -->
     <string name="delete_screenshot_toast">Screenshot Deleted</string>
+
+    <!-- USB tether QS tile -->
+    <string name="accessibility_quick_settings_usb_tether_off">USB tethering off</string>
+    <string name="accessibility_quick_settings_usb_tether_on">USB tethering on</string>
+    <string name="accessibility_quick_settings_usb_tether_changed_off">USB tethering turned off</string>
+    <string name="accessibility_quick_settings_usb_tether_changed_on">USB tethering turned on</string>
+    <string name="quick_settings_usb_tether_label">USB tethering</string>
+
+    <!-- Ambient Display QS tile -->
+    <string name="accessibility_quick_settings_ambient_display_off">Ambient Display off</string>
+    <string name="accessibility_quick_settings_ambient_display_on">Ambient Display on</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_off">Ambient Display turned off</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_on">Ambient Display turned on</string>
+    <string name="accessibility_quick_settings_ambient_display_off">Ambient Display off</string>
+    <string name="accessibility_quick_settings_ambient_display_on">Ambient Display on</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_off">Ambient Display turned off</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_on">Ambient Display turned on</string>
+    <string name="quick_settings_ambient_display_label">Ambient Display</string>
+
+    <!-- Screenshot QS tile -->
+    <string name="quick_settings_screenshot_label">Screenshot</string>
+
+    <!-- NFC QS tile -->
+    <string name="quick_settings_nfc_label">NFC</string>
+
+    <!-- Screen off QS tile -->
+    <string name="quick_settings_screen_off">Screen off</string>
+
+    <!-- Brightness QS Tile -->
+    <string name="quick_settings_brightness">Brightness</string>
+
+    <!-- Music QS Tile -->
+    <string name="quick_settings_music_label">Music</string>
+    <string name="quick_settings_music_play">Play</string>
+    <string name="quick_settings_music_pause">Pause</string>
+
+    <!-- Reboot/Recovery QS Tile -->
+    <string name="quick_settings_reboot_label">Reboot</string>
+    <string name="quick_settings_reboot_recovery_label">Recovery</string>
 
 </resources>

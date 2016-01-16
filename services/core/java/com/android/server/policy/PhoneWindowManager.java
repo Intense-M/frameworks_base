@@ -134,6 +134,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.List;
 import java.lang.reflect.Constructor;
 
@@ -406,6 +407,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     int mUserRotationMode = WindowManagerPolicy.USER_ROTATION_FREE;
     int mUserRotation = Surface.ROTATION_0;
+    int mUserRotationAngles = -1;
     boolean mAccelerometerDefault;
 
     boolean mSupportAutoRotation;
@@ -764,6 +766,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             resolver.registerContentObserver(Settings.Global.getUriFor(
                     Settings.Global.POLICY_CONTROL), false, this,
                     UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.ACCELEROMETER_ROTATION_ANGLES), false, this,
+		    UserHandle.USER_ALL);
             updateSettings();
         }
 
@@ -1812,6 +1817,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 updateRotation = true;
                 updateOrientationListenerLp();
             }
+
+            mUserRotationAngles = Settings.System.getIntForUser(resolver,
+                    Settings.System.ACCELEROMETER_ROTATION_ANGLES, -1,
+                    UserHandle.USER_CURRENT);
 
             if (mSystemReady) {
                 int pointerLocation = Settings.System.getIntForUser(resolver,
@@ -6010,10 +6019,30 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     mAllowAllRotations = mContext.getResources().getBoolean(
                             com.android.internal.R.bool.config_allowAllRotations) ? 1 : 0;
                 }
-                if (sensorRotation != mUpsideDownRotation
-                        || mAllowAllRotations == 1
-                        || orientation == ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR
-                        || orientation == ActivityInfo.SCREEN_ORIENTATION_FULL_USER) {
+                // Rotation setting bitmask
+                // 1=0 2=90 4=180 8=270
+                boolean allowed = true;
+                if (mUserRotationAngles < 0) {
+                    // Not set by user so use these defaults
+                     mUserRotationAngles = mAllowAllRotations == 1 ?
+                            (1 | 2 | 4 | 8) : // All angles
+                                (1 | 2 | 8); // All except 180
+                }
+                switch (sensorRotation) {
+                    case Surface.ROTATION_0:
+                        allowed = (mUserRotationAngles & 1) != 0;
+                        break;
+                    case Surface.ROTATION_90:
+                        allowed = (mUserRotationAngles & 2) != 0;
+                        break;
+                    case Surface.ROTATION_180:
+                        allowed = (mUserRotationAngles & 4) != 0;
+                        break;
+                    case Surface.ROTATION_270:
+                        allowed = (mUserRotationAngles & 8) != 0;
+                        break;
+                }
+                if (allowed) {
                     preferredRotation = sensorRotation;
                 } else {
                     preferredRotation = lastRotation;
@@ -6309,10 +6338,17 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     mBootMsgDialog.show();
                 }
 
+                // Only display the current package name if the main message says "Optimizing app N of M".
+                // We don't want to do this when the message says "Starting apps" or "Finishing boot", etc.
                 if (always && (currentPackageName != null)) {
-                    // Only display the current package name if the main message says "Optimizing app N of M".
-                    // We don't want to do this when the message says "Starting apps" or "Finishing boot", etc.
-                    mBootMsgDialog.setMessage(Html.fromHtml(msg + "<br><b>" + currentPackageName + "</b>"));
+
+                    // Calculate random text color
+                    Random rand = new Random();
+                    String randomColor = Integer.toHexString(rand.nextInt(0xFFFFFF) & 0xFCFCFC );
+                    mBootMsgDialog.setMessage(Html.fromHtml(msg +
+                                                            "<br><b><font color=\"#" + randomColor + "\">" +
+                                                            currentPackageName +
+                                                            "</font></b>"));
                 }
                 else {
                     mBootMsgDialog.setMessage(msg);
