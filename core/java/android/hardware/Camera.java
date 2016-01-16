@@ -2079,6 +2079,15 @@ public class Camera {
     }
     private native final void native_setLongshot(boolean enable);
 
+    /** @hide
+     * Stop longshot. Available only in ZSL.
+     */
+    public final void stopLongshot()
+    {
+        native_stopLongshot();
+    }
+    private native final void native_stopLongshot();
+
      /** @hide
      * Handles the Touch Co-ordinate.
      */
@@ -4357,6 +4366,7 @@ public class Camera {
             splitter.setString(str);
             int index = 0;
             for (String s : splitter) {
+                s = s.replaceAll("\\s","");
                 output[index++] = Integer.parseInt(s);
             }
         }

@@ -442,6 +442,7 @@ public interface WindowManagerPolicy {
 
         public void shutdown(boolean confirm);
         public void rebootSafeMode(boolean confirm);
+        public void reboot();
 
         /**
          * Return the window manager lock needed to correctly call "Lw" methods.
@@ -1161,6 +1162,11 @@ public interface WindowManagerPolicy {
      * user can start interacting with it.
      */
     public void systemBooted();
+
+    /**
+     * name of package being worked on during boot time message
+     */
+    public void setPackageName(String pkgName);
 
     /**
      * Show boot time message to the user.

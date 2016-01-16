@@ -330,6 +330,7 @@ public class WindowManagerService extends IWindowManager.Stub
     int[] mCurrentProfileIds = new int[] {UserHandle.USER_OWNER};
 
     final Context mContext;
+    private Context mUiContext;
 
     final boolean mHaveInputMethods;
 
@@ -634,9 +635,9 @@ public class WindowManagerService extends IWindowManager.Stub
     PowerManager mPowerManager;
     PowerManagerInternal mPowerManagerInternal;
 
-    float mWindowAnimationScaleSetting = 1.0f;
-    float mTransitionAnimationScaleSetting = 1.0f;
-    float mAnimatorDurationScaleSetting = 1.0f;
+    float mWindowAnimationScaleSetting = 0.5f;
+    float mTransitionAnimationScaleSetting = 0.5f;
+    float mAnimatorDurationScaleSetting = 0.5f;
     boolean mAnimationsDisabled = false;
 
     final InputManagerService mInputManager;
@@ -1003,6 +1004,10 @@ public class WindowManagerService extends IWindowManager.Stub
 
     public InputMonitor getInputMonitor() {
         return mInputMonitor;
+    }
+
+    private Context getUiContext() {
+        return mContext;
     }
 
     @Override
@@ -5677,6 +5682,12 @@ public class WindowManagerService extends IWindowManager.Stub
         synchronized (mWindowMap) {
             mCurrentProfileIds = currentProfileIds;
         }
+    }
+
+    // Called by window manager policy.  Not exposed externally.
+    @Override
+    public void reboot() {
+        ShutdownThread.reboot(getUiContext(), null, true);
     }
 
     public void setCurrentUser(final int newUserId, final int[] currentProfileIds) {

@@ -274,7 +274,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                 continue;
             }
             if (GLOBAL_ACTION_KEY_POWER.equals(actionKey)) {
-                mItems.add(new PowerAction());
+                mItems.add(getPowerAction());
             } else if (GLOBAL_ACTION_KEY_REBOOT.equals(actionKey)) {
                 mItems.add(new RebootAction());
             } else if (GLOBAL_ACTION_KEY_AIRPLANE.equals(actionKey)) {
@@ -338,20 +338,43 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         return dialog;
     }
 
-    private final class PowerAction extends SinglePressAction implements LongPressAction {
-        private PowerAction() {
-            super(com.android.internal.R.drawable.ic_lock_power_off,
-                R.string.global_action_power_off);
+    private Action getPowerAction() {
+        return new SinglePressAction(com.android.internal.R.drawable.ic_lock_power_off,
+                R.string.global_action_power_off) {
+
+            @Override
+            public void onPress() {
+            // shutdown by making sure radio and power are handled accordingly.
+            mWindowManagerFuncs.shutdown(false /* confirm */);
+            }
+
+            @Override
+            public boolean showDuringKeyguard() {
+                return true;
+            }
+
+            @Override
+            public boolean showBeforeProvisioning() {
+                return true;
+            }
+        };
+    }
+
+    private final class RebootAction extends SinglePressAction implements LongPressAction {
+        private RebootAction() {
+            super(com.android.internal.R.drawable.ic_lock_reboot,
+                R.string.global_action_reboot);
+        }
+
+        @Override
+        public void onPress() {
+            mWindowManagerFuncs.reboot();
         }
 
         @Override
         public boolean onLongPress() {
-            UserManager um = (UserManager) mContext.getSystemService(Context.USER_SERVICE);
-            if (!um.hasUserRestriction(UserManager.DISALLOW_SAFE_BOOT)) {
-                mWindowManagerFuncs.rebootSafeMode(true);
-                return true;
-            }
-            return false;
+            mWindowManagerFuncs.rebootSafeMode(true);
+            return true;
         }
 
         @Override
@@ -362,41 +385,6 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         @Override
         public boolean showBeforeProvisioning() {
             return true;
-        }
-
-        @Override
-        public void onPress() {
-            // shutdown by making sure radio and power are handled accordingly.
-            mWindowManagerFuncs.shutdown(false /* confirm */);
-        }
-    }
-
-    private final class RebootAction extends SinglePressAction {
-        private RebootAction() {
-            super(com.android.internal.R.drawable.ic_lock_power_reboot,
-                    R.string.global_action_reboot);
-        }
-
-        @Override
-        public boolean showDuringKeyguard() {
-            return true;
-        }
-
-        @Override
-        public boolean showBeforeProvisioning() {
-            return true;
-        }
-
-        @Override
-        public void onPress() {
-            try {
-                IPowerManager pm = IPowerManager.Stub.asInterface(ServiceManager
-                        .getService(Context.POWER_SERVICE));
-                pm.reboot(true, null, false);
-            } catch (RemoteException e) {
-                Log.e(TAG, "PowerManager service died!", e);
-                return;
-            }
         }
     }
 
@@ -1170,7 +1158,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         private boolean mCancelOnUp;
 
         public GlobalActionsDialog(Context context, AlertParams params) {
-            super(context, getDialogTheme(context));
+            super(context, com.android.internal.R.style.Theme_Material_DayNight_Dialog_Alert);
             mContext = getContext();
             mAlert = new AlertController(mContext, this, getWindow());
             mAdapter = (MyAdapter) params.mAdapter;

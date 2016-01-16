@@ -3816,7 +3816,7 @@ bool ResTable::getResourceName(uint32_t resID, bool allowUtf8, resource_name* ou
 
     if (p < 0) {
         if (Res_GETPACKAGE(resID)+1 == 0) {
-            ALOGW("No package identifier when getting name for resource number 0x%08x", resID);
+            ALOGV("No package identifier when getting name for resource number 0x%08x", resID);
         } else {
             ALOGW("No known package when getting name for resource number 0x%08x", resID);
         }
@@ -5831,7 +5831,7 @@ status_t ResTable::getEntry(
         }
 
         if (static_cast<size_t>(realEntryIndex) >= typeSpec->entryCount) {
-            ALOGW("For resource 0x%08x, entry index(%d) is beyond type entryCount(%d)",
+            ALOGV("For resource 0x%08x, entry index(%d) is beyond type entryCount(%d)",
                     Res_MAKEID(packageGroup->id - 1, typeIndex, entryIndex),
                     entryIndex, static_cast<int>(typeSpec->entryCount));
             // We should normally abort here, but some legacy apps declare
@@ -6101,7 +6101,7 @@ status_t ResTable::parsePackage(const ResTable_package* const pkg,
                 if (!typeList.isEmpty()) {
                     const Type* existingType = typeList[0];
                     if (existingType->entryCount != newEntryCount && idmapIndex < 0) {
-                        ALOGW("ResTable_typeSpec entry count inconsistent: given %d, previously %d",
+                        ALOGV("ResTable_typeSpec entry count inconsistent: given %d, previously %d",
                                 (int) newEntryCount, (int) existingType->entryCount);
                         // We should normally abort here, but some legacy apps declare
                         // resources in the 'android' package (old bug in AAPT).
