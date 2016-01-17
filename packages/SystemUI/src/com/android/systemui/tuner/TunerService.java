@@ -34,6 +34,7 @@ import android.provider.Settings;
 import android.util.ArrayMap;
 
 import com.android.systemui.BatteryMeterView;
+import com.android.systemui.DemoMode;
 import com.android.systemui.R;
 import com.android.systemui.SystemUI;
 import com.android.systemui.SystemUIApplication;
@@ -49,15 +50,15 @@ public class TunerService extends SystemUI {
 
     public static final String ACTION_CLEAR = "com.android.systemui.action.CLEAR_TUNER";
 
-    public final Observer mObserver = new Observer();
+    private final Observer mObserver = new Observer();
     // Map of Uris we listen on to their settings keys.
-    public final ArrayMap<Uri, String> mListeningUris = new ArrayMap<>();
+    private final ArrayMap<Uri, String> mListeningUris = new ArrayMap<>();
     // Map of settings keys to the listener.
-    public final HashMap<String, List<Tunable>> mTunableLookup = new HashMap<>();
+    private final HashMap<String, List<Tunable>> mTunableLookup = new HashMap<>();
 
-    public ContentResolver mContentResolver;
-    public int mCurrentUser;
-    public CurrentUserTracker mUserTracker;
+    private ContentResolver mContentResolver;
+    private int mCurrentUser;
+    private CurrentUserTracker mUserTracker;
 
     @Override
     public void start() {
@@ -82,7 +83,7 @@ public class TunerService extends SystemUI {
         }
     }
 
-    public void addTunable(Tunable tunable, String key) {
+    private void addTunable(Tunable tunable, String key) {
         if (!mTunableLookup.containsKey(key)) {
             mTunableLookup.put(key, new ArrayList<Tunable>());
         }
@@ -121,7 +122,7 @@ public class TunerService extends SystemUI {
         }
     }
 
-    public void reloadAll() {
+    private void reloadAll() {
         for (String key : mTunableLookup.keySet()) {
             String value = Settings.Secure.getStringForUser(mContentResolver, key,
                     mCurrentUser);
@@ -132,13 +133,20 @@ public class TunerService extends SystemUI {
     }
 
     public void clearAll() {
+        // A couple special cases.
+        Settings.Global.putString(mContentResolver, DemoMode.DEMO_MODE_ALLOWED, null);
+        Settings.System.putString(mContentResolver, BatteryMeterView.SHOW_PERCENT_SETTING, null);
+        Intent intent = new Intent(DemoMode.ACTION_DEMO);
+        intent.putExtra(DemoMode.EXTRA_COMMAND, DemoMode.COMMAND_EXIT);
+        mContext.sendBroadcast(intent);
+
         for (String key : mTunableLookup.keySet()) {
             Settings.Secure.putString(mContentResolver, key, null);
         }
     }
 
     // Only used in other processes, such as the tuner.
-    public static TunerService sInstance;
+    private static TunerService sInstance;
 
     public static TunerService get(Context context) {
         SystemUIApplication sysUi = (SystemUIApplication) context.getApplicationContext();
@@ -150,7 +158,7 @@ public class TunerService extends SystemUI {
         return service;
     }
 
-    public static TunerService getStaticService(Context context) {
+    private static TunerService getStaticService(Context context) {
         if (sInstance == null) {
             sInstance = new TunerService();
             sInstance.mContext = context.getApplicationContext();
@@ -174,6 +182,9 @@ public class TunerService extends SystemUI {
                 context.sendBroadcast(new Intent(TunerService.ACTION_CLEAR));
                 // Disable access to tuner.
                 TunerService.setTunerEnabled(context, false);
+                // Make them sit through the warning dialog again.
+                Settings.Secure.putInt(context.getContentResolver(),
+                        TunerFragment.SETTING_SEEN_TUNER_WARNING, 0);
                 if (onDisabled != null) {
                     onDisabled.run();
                 }
@@ -196,7 +207,7 @@ public class TunerService extends SystemUI {
                 == PackageManager.COMPONENT_ENABLED_STATE_ENABLED;
     }
 
-    public static Context userContext(Context context) {
+    private static Context userContext(Context context) {
         try {
             return context.createPackageContextAsUser(context.getPackageName(), 0,
                     new UserHandle(ActivityManager.getCurrentUser()));
@@ -205,7 +216,7 @@ public class TunerService extends SystemUI {
         }
     }
 
-    public class Observer extends ContentObserver {
+    private class Observer extends ContentObserver {
         public Observer() {
             super(new Handler(Looper.getMainLooper()));
         }
