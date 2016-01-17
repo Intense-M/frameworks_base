@@ -72,4 +72,8 @@
          all of the currently visible notifications. [CHAR LIMIT=10]-->
      <string name="clear_recents">Close all recent</string>
 
+    <!-- Battery Saver QS Tile -->
+    <string name="quick_settings_battery_saver">Battery saver</string>
+    <string name="quick_settings_battery_saver_off">Battery saver off</string>
+
 </resources>

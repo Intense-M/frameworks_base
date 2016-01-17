@@ -3259,6 +3259,13 @@ public final class Settings {
          */
         public static final String DOUBLE_TAP_SLEEP_LOCK_SCREEN = "double_tap_sleep_lock_screen";
 
+         /**
+          * Whether to display powermenu on secure lockscreen
+          *
+          * @hide
+          */
+          public static final String POWER_MENU_LOCKSCREEN = "power_menu_lockscreen";
+
         /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
@@ -3421,6 +3428,14 @@ public final class Settings {
          * @hide
          */
         public static final String STATUS_BAR_CARRIER_COLOR = "status_bar_carrier_color";
+
+        /**
+         * Whether to use default custom header or poly hd
+         * 0 = default
+         * 1 = poly hd
+         * @hide
+         */
+        public static final String STATUS_BAR_CUSTOM_HEADER_DEFAULT = "status_bar_custom_header_default";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
