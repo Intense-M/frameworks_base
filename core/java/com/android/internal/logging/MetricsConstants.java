@@ -267,6 +267,8 @@ public interface MetricsConstants {
     // These constants must match those in the analytic pipeline, do not edit.
     // Add temporary values to the top of MetricsLogger instead.
 
+    //Intense-M
+    public static final int INTENSEM = 239;
     //aliases
     public static final int DEVICEINFO_STORAGE = DEVICEINFO_MEMORY;
 }
