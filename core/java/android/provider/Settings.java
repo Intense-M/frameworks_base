@@ -3259,6 +3259,13 @@ public final class Settings {
          */
         public static final String DOUBLE_TAP_SLEEP_LOCK_SCREEN = "double_tap_sleep_lock_screen";
 
+         /**
+          * Whether to display powermenu on secure lockscreen
+          *
+          * @hide
+          */
+          public static final String POWER_MENU_LOCKSCREEN = "power_menu_lockscreen";
+
         /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
