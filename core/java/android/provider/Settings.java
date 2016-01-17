@@ -3357,6 +3357,12 @@ public final class Settings {
         public static final String STATUSBAR_CLOCK_DATE_FORMAT = "statusbar_clock_date_format";
 
         /**
+         * Show search bar in recents
+         * @hide
+         */
+         public static final String RECENTS_SHOW_SEARCH_BAR = "recents_show_search_bar";
+
+        /**
          * Boolean value whether to link ringtone and notification volume
          *
          * @hide
