@@ -3396,7 +3396,6 @@ public final class Settings {
         public static final String TOAST_ICON = "toast_icon";
 
         /**
-<<<<<<< HEAD
          * Whether to use the custom status bar header or not
          * @hide
          */
