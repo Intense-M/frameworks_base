@@ -1279,7 +1279,7 @@ public class DirectoryFragment extends Fragment {
                 // Do nothing
             } catch (RemoteException e) {
                 Log.w(TAG, "Failed to load thumbnail for " + mUri + ": " + e);
-            } catch (Exception e) {
+            } catch (IOException e) {
                 Log.w(TAG, "Failed to load thumbnail for " + mUri + ": " + e);
             } finally {
                 ContentProviderClient.releaseQuietly(client);
