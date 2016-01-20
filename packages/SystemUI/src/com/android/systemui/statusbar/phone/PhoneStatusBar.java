@@ -3228,7 +3228,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         if (mStatusBarView == null) return;
         ContentResolver resolver = mContext.getContentResolver();
         intenseLogo = (ImageView) mStatusBarView.findViewById(R.id.intense_logo);
-        teslaLogo.setColorFilter(color, Mode.SRC_IN);
+        intenseLogo.setColorFilter(color, Mode.SRC_IN);
         if (intenseLogo != null) {
             intenseLogo.setVisibility(show ? (mIntenseLogo ? View.VISIBLE : View.GONE) : View.GONE);
         }
