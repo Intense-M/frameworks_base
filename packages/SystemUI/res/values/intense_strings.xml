@@ -76,4 +76,7 @@
     <string name="quick_settings_battery_saver">Battery saver</string>
     <string name="quick_settings_battery_saver_off">Battery saver off</string>
 
+    <!-- Battery level for expanded quick settings [CHAR LIMIT=2] -->
+    <string name="battery_level_template"><xliff:g id="level" example="45">%d</xliff:g>%%</string>
+
 </resources>
