@@ -3204,7 +3204,7 @@ public final class Settings {
          * This is an integer value in a range between -7 and +7, so there are 15 possible values.
          *   -7 = slowest
          *    0 = default speed
-         *   +7 = fastest   
+         *   +7 = fastest
          * @hide
          */
         public static final String POINTER_SPEED = "pointer_speed";
@@ -3252,7 +3252,7 @@ public final class Settings {
         // DarkKat additions start
 
         /**
-         * Whether to include advanced reboot options in power menu for 
+         * Whether to include advanced reboot options in power menu for
          * quick rebooting, rebooting into recovery and rebooting into bootloader
          * @hide
          */
@@ -3453,6 +3453,20 @@ public final class Settings {
          * @hide
          */
         public static final String STATUS_BAR_CARRIER_COLOR = "status_bar_carrier_color";
+
+        /**
+         * Alternative recent apps integration using OmniSwitch
+         */
+        public static final String RECENTS_USE_OMNISWITCH = "recents_use_omniswitch";
+
+         /**
+          * MediaScanner behavior on boot.
+          * 0 = enabled
+          * 1 = ask (notification)
+          * 2 = disabled
+          * @hide
+          */
+        public static final String MEDIA_SCANNER_ON_BOOT = "media_scanner_on_boot";
 
         /**
          * Whether to use default custom header or poly hd
