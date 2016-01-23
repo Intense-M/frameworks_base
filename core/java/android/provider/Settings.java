@@ -3499,6 +3499,12 @@ public final class Settings {
          */
         public static final String STATUS_BAR_CUSTOM_HEADER = "status_bar_custom_header";
 
+         /**
+          * Whether notification is enabled when headset is plugged in
+          * @hide
+          */
+        public static final String HEADSET_PLUGGED_IN = "headset_plugged_in";
+
         /**
          * Current active provider
          * @hide
