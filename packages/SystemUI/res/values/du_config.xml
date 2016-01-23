@@ -24,4 +24,7 @@
     <!-- The min animation duration for animating the task bar out. -->
     <integer name="recents_animate_task_bar_exit_duration">125</integer>
 
+    <!-- Weather string format in expanded statusbar header -->
+    <string name="status_bar_expanded_header_weather_format"><xliff:g id="temp">%1$s</xliff:g> - <xliff:g id="condition">%2$s</xliff:g></string>
+
 </resources>
