@@ -2380,6 +2380,13 @@ public final class Settings {
                 "lockscreen_scramble_pin_layout";
 
         /**
+         * Whether to use the custom quick unlock screen control
+         * @hide
+         */
+        public static final String LOCKSCREEN_QUICK_UNLOCK_CONTROL =
+                "lockscreen_quick_unlock_control";
+
+        /**
          * A formatted string of the next alarm that is set, or the empty string
          * if there is no alarm set.
          *
@@ -3093,6 +3100,18 @@ public final class Settings {
         public static final Validator NOTIFICATION_LIGHT_PULSE_VALIDATOR = sBooleanValidator;
 
         /**
+         * Disable Immersive Message
+         * @hide
+         */
+        public static final String DISABLE_IMMERSIVE_MESSAGE = "disable_immersive_message";
+
+        /**
+         * Force expanded notifications on all apps that support it.
+         * @hide
+         */
+        public static final String FORCE_EXPANDED_NOTIFICATIONS = "force_expanded_notifications";
+
+        /**
          * Show pointer location on screen?
          * 0 = no
          * 1 = yes
@@ -3499,6 +3518,12 @@ public final class Settings {
          */
         public static final String STATUS_BAR_CUSTOM_HEADER = "status_bar_custom_header";
 
+         /**
+          * Whether notification is enabled when headset is plugged in
+          * @hide
+          */
+        public static final String HEADSET_PLUGGED_IN = "headset_plugged_in";
+
         /**
          * Current active provider
          * @hide
@@ -3531,6 +3556,18 @@ public final class Settings {
          * Alternative recent apps integration using OmniSwitch
          */
         public static final String RECENTS_USE_OMNISWITCH = "recents_use_omniswitch";
+
+        /**
+         * Give Missed call notifications a breathing effect
+         * @hide
+         */
+        public static final String KEY_MISSED_CALL_BREATH = "missed_call_breath";
+
+        /**
+         * Give Voicemail notifications a breathing effect
+         * @hide
+         */
+        public static final String KEY_VOICEMAIL_BREATH = "voicemail_breath";
 
          /**
           * MediaScanner behavior on boot.
