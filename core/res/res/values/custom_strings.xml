@@ -39,4 +39,10 @@
     <string name="shutdown_reboot_dlg_message_quick_reboot">Rebooting\u2026\n(Quick reboot)</string>
     <string name="shutdown_reboot_dlg_message_recovery">Rebooting\u2026\n(Recovery)</string>
     <string name="shutdown_reboot_dlg_message_bootloader">Rebooting\u2026\n(Bootloader)</string>
+
+    <!-- Global Actions -->
+    <string name="global_action_screenshot">Screenshot</string>
+    <string name="global_action_search">Search</string>
+    <string name="global_action_voicesearch">Voice Search</string>
+
 </resources>
