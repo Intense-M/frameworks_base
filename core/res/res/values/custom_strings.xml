@@ -44,6 +44,5 @@
     <string name="global_action_screenshot">Screenshot</string>
     <string name="global_action_search">Search</string>
     <string name="global_action_voicesearch">Voice Search</string>
-    <string name="global_action_screenrecord">Screenrecord</string>
 
 </resources>
