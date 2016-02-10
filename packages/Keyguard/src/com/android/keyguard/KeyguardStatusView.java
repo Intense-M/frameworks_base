@@ -45,7 +45,7 @@ import android.widget.TextView;
 
 import com.android.internal.util.du.WeatherController;
 import com.android.internal.util.du.WeatherControllerImpl;
-import com.android.internal.util.du.ImageHelper;
+import com.android.internal.util.slim.ImageHelper;
 import com.android.internal.widget.LockPatternUtils;
 
 import java.util.Date;
